@@ -1,0 +1,5 @@
+#
+# Regular cron jobs for the sh-cronapt package
+#
+# Every night at 4 o'clock.
+0 4     * * *   root    test -x /usr/local/bin/cronapt.sh && /usr/local/bin/cronapt.sh
