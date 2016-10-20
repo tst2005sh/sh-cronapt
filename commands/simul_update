@@ -1,0 +1,8 @@
+cronapt_action_simul_upgrade() { cronapt_aptget upgrade -qq -s -o APT::Get::Show-Upgraded=true; }
+cronapt_filter_simul_upgrade() { cronapt_lessverbose | grep -o 'Inst [^ ]*'; }
+cronapt_result_simul_upgrade() {
+	if [ -n "$result" ]; then
+		level=info
+		cronapt_default
+	fi
+}

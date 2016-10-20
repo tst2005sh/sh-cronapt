@@ -1,0 +1,20 @@
+cronapt_action_available4upgrade() {
+	if [ -z "$1" ]; then
+		echo "Usage: available4upgrade <dist-upgrade|upgrade>"
+		return 1
+	fi
+	cronapt_aptget ${1:-upgrade} -s -o quiet=1 -o APT::Get::Show-Upgraded=true;
+}
+cronapt_filter_available4upgrade() { cronapt_changeonly | cronapt_drop0change; }
+cronapt_result_available4upgrade() {
+	if [ -n "$result" ]; then
+		level=alert
+		local shortresult="$(printf '[~%s/+%s/-%s]%0.0s\n' $(cronapt_result_to_upg_new_rem_kep "$result"))"
+		(
+			date
+			cronapt_aptget ${1:-upgrade} -s -o quiet=2 -o APT::Get::Show-User-Simulation-Note=no;
+			date
+		) 2>&1 | mail -s "CRON-APT: available updates $shortresult" "${MAILTO:-root}"
+		#timestampformat='no' cronapt_putlog_result_with_prefix "$1:"
+	fi
+}

@@ -1,0 +1,11 @@
+cronapt_action_update() { if cronapt_isroot; then cronapt_aptget -o quiet=2 update; fi; }
+#cronapt_action_update() { echo >&2 "fake-update raise an error on stderr"; echo "fake-update raise an error on stdout"; false; }
+#cronapt_filter_update() { cat; }
+cronapt_result_update() {
+	if [ $ERROR -ne 0 ]; then
+		level=error
+		#echo "oh shit the apt-get update failed! we need to raise a fucking error :D"
+		cronapt_default
+		return 1
+	fi
+}

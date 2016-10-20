@@ -1,0 +1,10 @@
+cronapt_action_download() { cronapt_aptget -o quiet=1 dist-upgrade -d -y -o APT::Get::Show-Upgraded=true; }
+cronapt_filter_download() { cronapt_changeonly | cronapt_drop0change; }
+cronapt_result_download() {
+	cronapt_default
+	if [ -n "$result" ]; then
+		cronapt_putloglevel alert "$context: something available ($result)"
+	else
+		cronapt_putloglevel info "$context: Nothing to update"
+	fi
+}

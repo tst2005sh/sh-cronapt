@@ -1,0 +1,6 @@
+cronapt_action_errortest() { nonexistantcommand; }
+cronapt_filter_errortest() { grep -o 'not found'; }
+cronapt_result_errortest() {
+	echo "custom result handler here, but also call the default one"
+	cronapt_default
+}

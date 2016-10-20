@@ -1,0 +1,3 @@
+cronapt_action_autoclean() { cronapt_aptget -o quiet=1 autoclean -y "$@"; }
+cronapt_filter_autoclean() { cronapt_lessverbose; }
+#cronapt_result_autoclean
