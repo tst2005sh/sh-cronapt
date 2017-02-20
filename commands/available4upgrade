@@ -14,7 +14,7 @@ cronapt_result_available4upgrade() {
 			date
 			cronapt_aptget ${1:-upgrade} -s -o quiet=2 -o APT::Get::Show-User-Simulation-Note=no;
 			date
-		) 2>&1 | mail -s "CRON-APT: available updates $shortresult" "${MAILTO:-root}"
+		) 2>&1 | mail -s "${HOSTNAME:-$(uname -n)}: cron-apt: available updates $shortresult" "${MAILTO:-root}"
 		#timestampformat='no' cronapt_putlog_result_with_prefix "$1:"
 	fi
 }
