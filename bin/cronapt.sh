@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #set -e
-cd -- "$(dirname "$0")/.." || exit 123
+cd -- "$(dirname -- "$0")/.." || exit 1
 
 #TODO: gerer l'envoie d'email en cas d'info voulue
 #TODO: pouvoir utiliser les memes fonctions mais changer l'affichage final ?
