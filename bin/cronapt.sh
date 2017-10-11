@@ -173,6 +173,12 @@ main() {
 #	cronapt available4upgrade dist-upgrade
 #	cronapt simul_upgrade
 }
-main "$@"
-exit $?
+if [ $# -eq 0 ]; then
+	. default.cfg
+	exit $?
+fi
+
+if [ -f "$1" ]; then
+	. "./$1"
+fi
 
