@@ -174,7 +174,7 @@ main() {
 #	cronapt simul_upgrade
 }
 if [ $# -eq 0 ]; then
-	. default.cfg
+	. ./default.cfg
 	exit $?
 fi
 
